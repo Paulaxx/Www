@@ -1,0 +1,160 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff5f5
+}
+  
+.menu {
+    overflow: hidden;
+    background-color: #333;
+}
+  
+.menu a {
+    float: left;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+  
+.dropdown .dropdownbutton {
+    font-size: 20px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+  
+.menu a:hover, .dropdown:hover .dropdownbutton {
+    background-color: #ddd;
+}
+  
+.dropdownitems {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdownitems a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+  
+.dropdownitems a:hover {
+    background-color: #ddd;
+}
+  
+.dropdown:hover .dropdownitems {
+    display: block;
+}
+
+h4 {
+    font-size: 15px;
+    color: #666699;
+}
+
+dd.description {
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    text-align: justify;
+    padding: 5px;
+}
+
+ul.circle {
+    list-style-type: circle;
+}
+
+.ksiazki {
+    box-sizing: border-box;
+}
+
+.rower {
+    box-sizing: border-box;
+}
+
+.hobbyimg {
+    max-width: 100%;
+    object-fit: contain;
+    float: left;
+    width: 246px;
+    height: 350px;
+    padding: 10px;
+}
+
+.ksiazki {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.r1 {
+    flex: 50%;
+    object-fit: fill;
+    padding: 10px;
+}
+  
+.r2 {
+    flex: 50%;
+    object-fit: fill;
+    padding: 10px;
+}
+
+img.photo1 {
+    object-fit: contain;
+    float: left;
+    width: 500px;
+    height: 550px;
+    padding: 10px;
+}
+
+li.title {
+    font-size: 13px;
+    color: #a659a6	;
+}
+
+
+@media screen and (min-width: 1000px){
+    .ksiazki {
+        flex-direction: row;
+    }
+    .rower {
+        flex-direction: row;
+    }
+    h4{
+        font-size: 22px;
+    }
+    dd.description{
+        font-size: 15px;
+    }
+
+    li.title {
+        font-size: 20px;
+    }
+}

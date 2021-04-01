@@ -1,0 +1,59 @@
+<!DOCTYPE html >
+<html lang="pl">
+    <head>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&amp;family=Open+Sans:ital,wght@0,300;1,300&amp;family=Ranchers&amp;display=swap" rel="stylesheet">
+		<link href="style.css" rel="stylesheet" type="text/css"/>
+		<meta charset = "utf−8"/>
+		<title> Projekt2 </title>
+    </head>
+    <body>
+		<div class="menu">
+			<a href="projects.html" class="menu2">Moje projekty</a>
+			<div class="dropdown">
+				<button class="dropdownbutton">Moje zainteresowania</button>
+				<div class="dropdownitems">
+					<a href="hobby1.html">informatyczne</a>
+					<a href="hobby2.html">pozainformatyczne</a>
+				</div>
+			</div>
+	  	</div>
+		
+		<article>
+			<h2>Gra Carcassone</h2>
+			<p>Carcassone to gra planszowa. W implementację tej gry, napisaną w językach Python i React może grać od 2 do 5 osób. Gra polega na zbudowaniu łąk, zamków i dróg tak aby panować nad jak największa ilością ziem. W grze tej każdy z graczy otrzymuje losową "płytkę", zawierającą fragment terenu i musi umieścić ją w pasującym miejscu tak aby np. przedłużyć drogę lub poszerzyć łąkę. Gracz może również na nowo utworzonym terenie położyć swojego pionka, który będzie "pilnował" danego terenu. Po wykorzystaniu wszystkich płytek, liczone są punkty wszystkich graczy na podstawie posiadanych terenów. Wygrywa gracz z największą ilością punktów. </p>
+		</article>
+
+		<p>
+			Link do repozytorium projektu: <a href="https://github.com/jozef-piechaczek/carcassone">github</a>
+		</p>
+
+		<h4 class="myh4">Fragment kodu, który pokazuje sposób reprezentacji jednej z płytek</h4>
+		<figure>
+			<pre><code>
+			class Tile10(TileMeadow, TileCastle, TileRoad):
+					id = TileIDs.TILE10
+					amount = 3
+
+					def __init__(self):
+					super().__init__()
+					self.sides = [[[1, 2, 3, 10, 11, 12], Terrains.CASTLE, 1, None],
+										[[5, 8], Terrains.ROAD, 2, None],
+										[[4, 9], Terrains.MEADOW, 3, None],
+										[[6, 7], Terrains.MEADOW, 4, None]]
+							self.center = [[0], Terrains.DEFAULT, 5, None]
+
+					self.code7x7 = [
+							[0, 1, 1, 1, 1, 1, 0],
+							[1, 1, 1, 1, 1, 1, 2],
+							[1, 1, 2, 2, 2, 2, 2],
+							[1, 1, 2, 3, 3, 3, 3],
+							[1, 1, 2, 3, 2, 2, 2],
+							[1, 1, 2, 3, 2, 2, 2],
+							[0, 2, 2, 3, 2, 2, 0]
+					]
+			</code></pre>
+		</figure>
+
+    </body>
+</html>
