@@ -145,15 +145,17 @@
     color: #a659a6	;
 }
 
-dd.description, dd.description2 {
+li.description, li.description2 {
     font-size: 12px;
     font-family: 'Montserrat', sans-serif;
     font-family: 'Open Sans', sans-serif;
     text-align: justify;
     padding: 5px;
+    list-style-type: none;
+    color: black;
 }
 
-dd.description2 {
+li.description2 {
     display: none;
 }
 
@@ -259,12 +261,12 @@ figcaption{
         font-size: 20px;
     }
 
-    dd.description2 {
+    li.description2 {
         display: inline-block;
         font-size: 15px;
     }
 
-    dd.description{
+    li.description{
         font-size: 15px;
     }
 
