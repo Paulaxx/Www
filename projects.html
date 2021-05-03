@@ -2,23 +2,25 @@
 <html lang="pl">
     <head>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<script src="hamburger_menu.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&amp;family=Open+Sans:ital,wght@0,300;1,300&amp;family=Ranchers&amp;display=swap" rel="stylesheet">
 		<link href="style.css" rel="stylesheet" type="text/css"/>
 		<meta charset="UTF-8">
 		<title> Projekty </title>
     </head>
     <body>
-		<div class="menu">
-			<a href="projects.html" class="menu2">Moje projekty</a>
-			<div class="dropdown">
-				<button class="dropdownbutton">Moje zainteresowania
-				</button>
-				<div class="dropdownitems">
-					<a href="hobby1.html">informatyczne</a>
-					<a href="hobby2.html">pozainformatyczne</a>
-				</div>
+		<div class="menu" id="menu">
+			<a href="index.html">Strona główna</a>
+			<div id="dropdown">
+			  <a href="projects.html">Moje projekty</a>
+			  <a href="hobby1.html">Hobby informatyczne</a>
+			  <a href="hobby2.html">Hobby pozainformatyczne</a>
 			</div>
-	  	</div>
+			<a href="javascript:void(0);" class="icon" id="icon" onclick="myFunction()">
+			  <i class="fa fa-bars"></i>
+			</a>
+		</div>
 	
 		<div class="flex-container">
 			<dl class="flex-item-left">
