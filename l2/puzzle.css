@@ -1,0 +1,34 @@
+body {
+    box-sizing: border-box;
+    display: flex;
+}
+
+#puzzle_canvas {
+    height: auto;
+    margin: 10px;
+    object-fit: fill;
+}
+
+.gallery{
+    width: 60%;
+    position: relative;
+    padding: 70px;
+}
+
+
+.zdjecieja {
+    width: 20%;
+    float: left;
+    padding: 15px;
+    object-fit: contain;
+    padding: 28px;
+}
+
+form{
+    align-self: center;
+    font-size: 25px;
+}
+
+button{
+    font-size: 15px;
+}
