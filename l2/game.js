@@ -2,11 +2,13 @@ import { Puzzle } from "./puzzle.js";
 
 var _picture = 'pictures/picture1.jpeg'
 var _size = 4
+var canvas;
+var puzzle;
+var img;
 
-window.onload = init();
 
 function init() {
-    const canvas = document.getElementById("puzzle_canvas");
+    canvas = document.getElementById("puzzle_canvas");
     load_img_into_canvas(_picture, canvas)
     var image = document.getElementById('img');
     var image2 = document.getElementById('img2');
@@ -21,15 +23,10 @@ function init() {
     var image11 = document.getElementById('img11');
     var image12 = document.getElementById('img12');
 
-    const exec = () => {
-        console.log(_picture);
-        //load_img_into_canvas(_picture, canvas);
-        _picture = 'pictures/picture2.jpg';
-        load_img_into_canvas('pictures/picture2.jpg', canvas);
-    };
+    var runButton = document.getElementById("play");
 
-    document.getElementById("play").removeEventListener('click', exec);
-    document.getElementById("play").addEventListener('click', exec);
+
+    runButton.onclick = fun;
 
     /*image.addEventListener('click', function(){imagee(image);});
     image2.addEventListener('click', function(){imagee(image2);});
@@ -45,46 +42,77 @@ function init() {
     image12.addEventListener('click', function(){imagee(image12);});*/
 }
 
+function fun(){
+    load_img_into_canvas('pictures/picture2.jpg', canvas);
+}
+
 function imagee(img){
     var src = img.src;
     let separate = src.split('/');
     _picture = "pictures/" + separate[separate.length-1];
 }
 
+function click(event){
+    let rect = canvas.getBoundingClientRect()
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    let coords = puzzle.getTileCoords(x, y);
+    if (puzzle.isMovable(coords)) {
+        puzzle.slide(puzzle.getTileIndexByCoords(coords))
+        puzzle.draw_tiles(canvas)
+    }
+}
+
+function mouseMove(event){
+    let rect = canvas.getBoundingClientRect()
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    let coords = puzzle.getTileCoords(x, y);
+    if (puzzle.isMovable(coords)) {
+        if(puzzle.highlightt === 0){
+            puzzle.highlight(canvas, coords);
+            puzzle.highlightt = 1;
+        }
+    }
+    else{
+        puzzle.draw_tiles(canvas);
+        puzzle.highlightt = 0;
+    }
+}
+
+function load(e){
+    canvas.width = img.width;
+    canvas.height = img.height;
+    puzzle = new Puzzle(_size, img);
+    puzzle.draw_tiles(canvas)
+    canvas.onclick = function(e) {  
+        click(e);
+    };  
+    
+    canvas.onmousemove = function(e) {  
+        mouseMove(e);  
+    };
+}
+
 function load_img_into_canvas(img_path, canvas) {
-    let img = new Image();
+    img = new Image();
     img.src = img_path;
-    img.addEventListener("load", () => {
+    img.onload = load;
+
+    /*img.addEventListener("load", () => {
         canvas.width = img.width;
         canvas.height = img.height;
-        let puzzle = new Puzzle(_size, img);
+        puzzle = new Puzzle(_size, img);
         puzzle.draw_tiles(canvas)
-        canvas.addEventListener("click", event => {
-            let rect = canvas.getBoundingClientRect()
-            let x = event.clientX - rect.left;
-            let y = event.clientY - rect.top;
-            let coords = puzzle.getTileCoords(x, y);
-            if (puzzle.isMovable(coords)) {
-                puzzle.slide(puzzle.getTileIndexByCoords(coords))
-                puzzle.draw_tiles(canvas)
-            }
-    });
-    canvas.addEventListener("mousemove", event => {
-        let rect = canvas.getBoundingClientRect()
-        let x = event.clientX - rect.left;
-        let y = event.clientY - rect.top;
-        let coords = puzzle.getTileCoords(x, y);
-        if (puzzle.isMovable(coords)) {
-            if(puzzle.highlightt === 0){
-                puzzle.highlight(canvas, coords);
-                puzzle.highlightt = 1;
-            }
-        }
-        else{
-            puzzle.draw_tiles(canvas);
-            puzzle.highlightt = 0;
-        }
-    });
+        canvas.onclick = function(e) {  
+            click(e);
+        };  
+    
+        canvas.onmousemove = function(e) {  
+            mouseMove(e);  
+        };
 
-    });
+    });*/
 }
+
+window.onload =  init;
