@@ -32,3 +32,47 @@ div{
 button{
     font-size: 15px;
 }
+
+@media screen and (max-width: 1000px){
+
+    body{
+        flex-direction: column;
+        display: block;
+    }
+
+    .gallery{
+        margin: auto;
+        display: block;
+    }
+
+    #desc, #size, #play{
+        font-size: 25px;
+        margin: auto;
+        display: block;
+        float: left;
+        margin: 10px;
+    }
+
+    .gallery{
+        width: 100%;
+        position: relative;
+        padding: 70px;
+    }
+    
+    .zdjecieja {
+        width: 25%;
+    }
+
+    .zdjecia {
+        float: right;
+    }
+
+    #insert {
+        margin: auto;
+        width: 50%;
+    }
+
+    #desc {
+        text-align: center;
+    }
+}
