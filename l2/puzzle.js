@@ -2,18 +2,18 @@ export class Puzzle {
     constructor(n, img) {
         this.n = n;
         this.img = img;
-        this.size = img.height/n;
+        this.size = img.height / n;
         this.tiles = [];
         this.init_tiles();
         this.highlightt = 0;
     }
 
-    init_tiles () {
+    init_tiles() {
         this.tiles.push(null);
         for (let i = 0; i < this.n; i++) {
             for (let j = 0; j < this.n; j++) {
                 if (i > 0 || j > 0) {
-                    this.tiles.push(new Tile(i*this.size, j*this.size, i*this.n + j));
+                    this.tiles.push(new Tile(i * this.size, j * this.size, i * this.n + j));
                 }
             }
         }
@@ -22,7 +22,7 @@ export class Puzzle {
         } while (!this.isSolvable())
     }
 
-    shuffleTiles () {
+    shuffleTiles() {
         for (let i = this.tiles.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             if (i > 0 && j > 0)
@@ -30,27 +30,40 @@ export class Puzzle {
         }
     }
 
-    draw_tiles (canvas) {
+    draw_tiles(canvas) {
         const ctx = canvas.getContext("2d");
         ctx.fillStyle = "#b71c1c";
         ctx.fillRect(0, 0, canvas.width, canvas.height)
         for (let i = 0; i < this.n; i++) {
             for (let j = 0; j < this.n; j++) {
-                let tile = this.tiles[i*this.n + j]
+                let tile = this.tiles[i * this.n + j]
                 if (tile !== null) {
-                    ctx.drawImage(this.img, tile.sx, tile.sy, this.size, this.size, i*this.size, j*this.size, this.size, this.size)
+                    ctx.drawImage(this.img, tile.sx, tile.sy, this.size, this.size, i * this.size, j * this.size, this.size, this.size)
                 }
             }
         }
     }
 
+    the_end() {
+        for (let i = 0; i < this.tiles.length; i++) {
+            let tile = this.tiles[i];
+            if (tile !== null) {
+                let id = tile.id;
+                if (id !== i) {
+                    return 0;
+                }
+            }
+        }
+        return 1;
+    }
+
     isMovable(coords) {
         const i = coords.i;
         const j = coords.j;
-        const utileIndex = (i - 1) >= 0     ? (i - 1) * this.n + j       : undefined;
-        const dtileIndex = (i + 1) < this.n ? (i + 1) * this.n + j       : undefined;
-        const ltileIndex = (j - 1) >= 0     ?  i      * this.n + (j - 1) : undefined;
-        const rtileIndex = (j + 1) < this.n ?  i      * this.n + (j + 1) : undefined;
+        const utileIndex = (i - 1) >= 0 ? (i - 1) * this.n + j : undefined;
+        const dtileIndex = (i + 1) < this.n ? (i + 1) * this.n + j : undefined;
+        const ltileIndex = (j - 1) >= 0 ? i * this.n + (j - 1) : undefined;
+        const rtileIndex = (j + 1) < this.n ? i * this.n + (j + 1) : undefined;
         return [utileIndex, dtileIndex, ltileIndex, rtileIndex].includes(this.getBlankIndex());
     }
 
@@ -73,7 +86,7 @@ export class Puzzle {
                 if (tileValue > compValue && tileValue != (lastTile - 1)) {
                     ++inversions;
                 }
-            }  
+            }
         }
         return inversions;
     }
@@ -99,13 +112,13 @@ export class Puzzle {
     getTileCoords(x, y) {
         let i = (x - x % this.size) / this.size;
         let j = (y - y % this.size) / this.size;
-        return {"i": i, "j": j};
+        return { "i": i, "j": j };
     }
 
-    whichTile(coords){
+    whichTile(coords) {
         for (let i = 0; i < this.n; i++) {
             let tile = this.tiles[i]
-            if(tile !== null){
+            if (tile !== null) {
                 if (coords.i > tile.sx && coords.i < (tile.sx + this.size) && coords.j > tile.sy && coords.j < (tile.sy + this.size)) {
                     return tile;
                 }
@@ -124,13 +137,13 @@ export class Puzzle {
         this.tiles[tileIndex] = null;
     }
 
-    getClickedTileSxSy(coords){
+    getClickedTileSxSy(coords) {
         let sx = coords.i * this.size;
         let sy = coords.j * this.size;
-        return {"sx": sx, "sy": sy};
+        return { "sx": sx, "sy": sy };
     }
 
-    highlight(canvas, coords){
+    highlight(canvas, coords) {
         const ctx = canvas.getContext("2d");
 
         let id = this.getTileIndexByCoords(coords);
