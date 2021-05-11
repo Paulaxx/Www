@@ -6,6 +6,10 @@ var canvas;
 var puzzle;
 var img;
 var size_input;
+var onlongtouch;
+var timer;
+var touchduration = 500;
+var e_touch;
 
 
 function init() {
@@ -139,6 +143,21 @@ function load(e) {
     canvas.onmousemove = function (e) {
         mouseMove(e);
     };
+
+    canvas.ontouchstart = touchstart;
+    canvas.ontouchend = touchend;
+
+}
+
+function touchstart(e) {
+    timer = setTimeout(onlongtouch, touchduration);
+    e_touch = e;
+}
+
+function touchend() {
+
+    if (timer)
+        clearTimeout(timer);
 }
 
 function load_img_into_canvas(img_path, canvas) {
@@ -148,3 +167,7 @@ function load_img_into_canvas(img_path, canvas) {
 }
 
 window.onload = init;
+
+onlongtouch = function () {
+    mouseMove(e_touch);
+}
