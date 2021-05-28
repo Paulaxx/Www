@@ -1,0 +1,247 @@
+// zmienne (w tym listy), zagniezdzanie, rozszerzania, domieszki
+$menu-color: #333;
+$menu-backlight-color: white;
+$text-color: #666699;
+$text-color2: #a659a6;
+$description-text-color: #7575a3;
+$fonts: (('Montserrat', sans-serif), ('Open Sans', sans-serif));
+$projects-flex: 33.33%;
+$list-style: circle;
+
+@mixin object-fit-and-float {
+    object-fit: contain;
+    float: left;
+}
+
+* {
+    box-sizing: border-box;
+}
+  
+body {
+    background-color: #fff5f5;
+}
+
+.menu{
+    overflow: hidden;
+    background-color: $menu-color;
+    position: relative;
+    & #dropdown {
+        display: block;
+    }
+    & a{
+        color: $menu-backlight-color;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+        float: left;
+        &.icon{
+            background: black;
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        &:hover{
+            background-color: #ddd;
+            color: black;
+        }
+    }
+}
+
+.zdjecieja {
+    width: 25%;
+    padding: 15px;
+    @include object-fit-and-float;
+}
+
+.aboutme {
+    width: 75%;
+    float: left;
+    padding: 18px;
+}
+
+p {
+    font-family: nth($fonts, 1);
+    font-family: nth($fonts, 2);
+}
+  
+h1 {
+    @extend p;
+    color: $text-color;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    text-align: left;
+    padding: 10px;
+    & a{
+        text-decoration: none;
+    }
+}
+  
+.flex-item-middle, .flex-item-right {
+    padding: 10px;
+    flex: $projects-flex;
+}
+
+.flex-item-left {
+    @extend .flex-item-middle;
+    object-fit: fill;
+}
+
+.img2 {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+.link {
+    padding: 10px;
+    font-family: nth($fonts, 1);
+    font-family: nth($fonts, 2);
+    color: $text-color2;
+}
+  
+.description1 {
+    font-size: 15px;
+    font-family: nth($fonts, 1);
+    font-family: nth($fonts, 2);
+    color: $description-text-color;
+}
+
+li {
+    &.title {
+        font-size: 13px;
+        color: $text-color2;
+    }
+    &.description{
+        font-size: 12px;
+        font-family: nth($fonts, 1);
+        font-family: nth($fonts, 2);
+        text-align: justify;
+        padding: 5px;
+        list-style-type: none;
+        color: black;
+    }
+    &.description2 {
+        @extend li.description;
+        display: none;
+    }
+}
+
+ul {
+    list-style-type: $list-style;
+    &.circle {
+        list-style-type: $list-style;
+    }
+}
+
+h4 {
+    font-size: 15px;
+    color: $text-color;
+}
+
+.ksiazki, .rower {
+    box-sizing: border-box;
+}
+
+.hobbyimg {
+    max-width: 100%;
+    @include object-fit-and-float;
+    width: 246px;
+    height: 350px;
+    padding: 10px;
+}
+
+.ksiazki, .rower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.r1, .r2 {
+    flex: 50%;
+    object-fit: fill;
+    padding: 10px;
+}
+
+img.photo1 {
+    @include object-fit-and-float;
+    width: 500px;
+    height: 550px;
+    padding: 10px;
+}
+
+h2 {
+    font-size: 18px;
+    color: $text-color;
+}
+
+article, nav{
+    font-family: nth($fonts, 1);
+    font-family: nth($fonts, 2);
+    text-align: justify;
+}
+
+.kotimg {
+    width: 40%;
+}
+  
+.myh4{
+    @extend article;
+    color: $text-color2;
+    font-size: 15px;
+}
+  
+figcaption{
+    font-size: 12px;
+    color: $description-text-color;
+}
+
+@media screen and (min-width: 1000px){
+    .flex-container {
+        flex-direction: row;
+    }
+  
+    .description1 {
+        font-size: 17px;
+    }
+    
+    .link {
+        font-size: 20px;
+    }
+
+    li {
+        &.description2 {
+            display: inline-block;
+            font-size: 15px;
+        }
+        &.description{
+            font-size: 15px;
+        }
+        &.title {
+            font-size: 20px;
+        }
+    }
+
+    h4{
+        font-size: 22px;
+    }
+
+    .ksiazki {
+        flex-direction: row;
+    }
+    .rower {
+        flex-direction: row;
+    }
+
+}
+
+
