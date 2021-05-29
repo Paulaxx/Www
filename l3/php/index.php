@@ -1,3 +1,7 @@
+<?php
+			include("./database.php");
+			connect();
+?>
 <!DOCTYPE html >
 <html lang="pl">
     <head>
@@ -16,6 +20,11 @@
 	
 		<nav class="zdjecieja">
 			<img style='height: 100%; width: 100%' src="images/zdjecie.jpg" alt="Moje zdjecie">
+			<p>
+				<?php
+					show_counter();
+				?>
+			</p>
 		</nav>
 
 		<article class="aboutme">

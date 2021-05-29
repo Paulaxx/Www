@@ -1,3 +1,7 @@
+<?php
+			include("./database.php");
+			connect();
+?>
 <!DOCTYPE html >
 <html lang="pl">
     <head>
