@@ -85,4 +85,117 @@ function sum_visites(mysqli $conn){
     }
 }
 
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = $login_err = "";
+
+function sign_up(){
+    global $username_err, $username, $password_err, $password, $confirm_password_err, $confirm_password;
+
+    $db_host = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "portfolio";
+    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+    if(!$conn)
+    {
+    die("Connection failed: " . mysqli_connect_error());
+    }
+    
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        //username
+        if(empty(trim($_POST["username"]))){
+            $username_err = "Wpisz login";
+        } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
+            $username_err = "Login może zawierać tylko litery, liczby i podkreślnik";
+        } else{
+            $param_username = trim($_POST["username"]);
+            $sql = "SELECT id from users where username like '$param_username';";
+            $result = $conn->query($sql);
+            if($result == TRUE && $result->num_rows > 0){
+                $username_err = "Ten login jest już zajęty";
+            }
+            else{
+                $username = trim($_POST["username"]);
+            }
+        }
+
+        //password
+        if(empty(trim($_POST["password"]))){
+            $password_err = "Wpisz hasło";    
+        } elseif(strlen(trim($_POST["password"])) < 6){
+            $password_err = "Hasło musi zawierać conajmniej 6 znaków";
+        } else{
+            $password = trim($_POST["password"]);
+        }
+
+        //confirm password
+        if(empty(trim($_POST["confirm_password"]))){
+            $confirm_password_err = "Potwierdź hasło";     
+        } else{
+            $confirm_password = trim($_POST["confirm_password"]);
+            if(empty($password_err) && ($password != $confirm_password)){
+                $confirm_password_err = "Hasła nie są takie same";
+            }
+        }
+
+        if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+            $param_password = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users (username, password) VALUES ('$username', '$param_password')";
+            $result = $conn->query($sql);
+            if($result == TRUE){
+                header("location: sign_in.php");
+            }
+        }
+
+        mysqli_close($conn);
+    }
+
+}
+
+function sign_in(){
+    global $username_err, $username, $password_err, $password, $login_err;
+
+    $db_host = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "portfolio";
+    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+    if(!$conn)
+    {
+    die("Connection failed: " . mysqli_connect_error());
+    }
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        if(empty(trim($_POST["username"]))){
+            $username_err = "Wpisz login";
+        } else{
+            $username = trim($_POST["username"]);
+        }
+
+        if(empty(trim($_POST["password"]))){
+            $password_err = "Wpisz hasło";
+        } else{
+            $password = trim($_POST["password"]);
+        }
+
+        if(empty($username_err) && empty($password_err)){
+            $sql = "SELECT password as password FROM users WHERE username LIKE '$username'";
+            $result = $conn->query($sql);
+            if($result == TRUE && $result->num_rows == 1){
+                $hash = $result->fetch_assoc();
+                $hashed_password = $hash['password'];
+                if(password_verify($password, $hashed_password)){
+                    header("location: index.php");
+                }
+                else{
+                    $login_err = "Nieprawidłowy login lub hasło";
+                }
+            }
+        }
+        mysqli_close($conn);
+    }
+}
+
 ?>

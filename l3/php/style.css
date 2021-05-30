@@ -6,6 +6,21 @@
     background-color: #fff5f5
   }
 
+  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #a659a6 !important;
+    border-color: #a659a6 !important;
+  }
+  
+  .wrapper { 
+    width: 360px;
+    padding: 20px;
+    margin: auto;
+    height: 50%;
+    overflow: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+  }
+
   .menu {
     overflow: hidden;
     background-color: #333;
@@ -97,6 +112,10 @@
     padding: 10px;
     font-family: 'Montserrat', sans-serif;
     font-family: 'Open Sans', sans-serif;
+    color: #a659a6;
+  }
+
+  .link2 {
     color: #a659a6;
   }
   
