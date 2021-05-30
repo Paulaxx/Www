@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
+    <meta http-equiv="refresh" content="300;url=sign_up.php">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>

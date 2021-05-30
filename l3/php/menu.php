@@ -10,3 +10,23 @@
 		<i class="fa fa-bars"></i>
 	</a>
 </div>
+<?php
+	session_start();
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+		echo
+		'<div class="log_data">
+			<p>Zalogowano jako: '.$_SESSION["username"].'</p>
+			<div>
+				<form action="logout.php" method="post">
+					<input type="hidden" value="logout" name="type_of_form" />
+					<input class="btn-primary" id="submitbutton" type="submit" value="Wyloguj" />
+				</form>
+			</div>
+		</div>';
+	}
+	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 300)) {
+		session_unset(); 
+		session_destroy();
+	}
+	$_SESSION['LAST_ACTIVITY'] = time();
+?>

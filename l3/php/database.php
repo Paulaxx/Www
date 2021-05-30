@@ -198,6 +198,7 @@ function sign_in(){
                     $_SESSION['id'] = $id2;
                     $_SESSION['date'] = date("Y-m-d");
                     $_SESSION['hour'] = date('H:i');
+                    $_SESSION['LAST_ACTIVITY'] = time();
                     header("location: index.php");
                 }
                 else{
@@ -207,12 +208,6 @@ function sign_in(){
         }
         mysqli_close($conn);
     }
-}
-
-function log_out(){
-    $_SESSION = array();
-    session_destroy();
-    header("location: index.php");
 }
 
 function comment(){
@@ -240,6 +235,9 @@ function comment(){
             $conn->query($sql);
         }
 	}
+    else if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST["my_content"])){
+        header("location: sign_in.php");
+    }
 }
 
 ?>

@@ -8,6 +8,7 @@
     <head>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<script src="hamburger_menu.js"></script>
+		<meta http-equiv="refresh" content="300;url=project1.php">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&amp;family=Open+Sans:ital,wght@0,300;1,300&amp;family=Ranchers&amp;display=swap" rel="stylesheet">
 		<meta charset="UTF-8">
