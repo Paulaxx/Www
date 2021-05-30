@@ -1,6 +1,7 @@
 <?php
 			include("./database.php");
 			connect();
+			comment();
 ?>
 <!DOCTYPE html >
 <html lang="pl">
@@ -63,6 +64,10 @@
 						mode = ""
 			</code></pre>
 		</figure>
+
+		<?php
+			include("./add_comment.php");
+		?>
 
     </body>
 </html>

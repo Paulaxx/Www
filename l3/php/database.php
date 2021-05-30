@@ -183,10 +183,21 @@ function sign_in(){
         if(empty($username_err) && empty($password_err)){
             $sql = "SELECT password as password FROM users WHERE username LIKE '$username'";
             $result = $conn->query($sql);
-            if($result == TRUE && $result->num_rows == 1){
+            $sql2 = "SELECT id as id FROM users WHERE username LIKE '$username'";
+            $result2 = $conn->query($sql2);
+            if($result == TRUE && $result->num_rows == 1 && $result2 == TRUE && $result2->num_rows == 1){
                 $hash = $result->fetch_assoc();
                 $hashed_password = $hash['password'];
+
+                $id = $result2->fetch_assoc();
+                $id2 = $id['id'];
                 if(password_verify($password, $hashed_password)){
+                    session_start();
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION['username'] = $username;
+                    $_SESSION['id'] = $id2;
+                    $_SESSION['date'] = date("Y-m-d");
+                    $_SESSION['hour'] = date('H:i');
                     header("location: index.php");
                 }
                 else{
@@ -196,6 +207,39 @@ function sign_in(){
         }
         mysqli_close($conn);
     }
+}
+
+function log_out(){
+    $_SESSION = array();
+    session_destroy();
+    header("location: index.php");
+}
+
+function comment(){
+
+    $db_host = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "portfolio";
+    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+    if(!$conn)
+    {
+    die("Connection failed: " . mysqli_connect_error());
+    }
+
+    session_start();
+
+    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SERVER['REQUEST_METHOD']=='POST' && isset($_POST["my_content"]))
+	{
+		if(!empty(trim($_POST["my_content"]))){
+            $id = $_SESSION['id'];
+            $text = trim($_POST["my_content"]);
+            $website = explode("/", $_SERVER['REQUEST_URI']);
+            $project_name = $website[count($website)-1];
+            $sql = "INSERT INTO comments (user_id, text, comm_date, website_name) VALUES ($id, '$text', curdate(), '$project_name')";
+            $conn->query($sql);
+        }
+	}
 }
 
 ?>

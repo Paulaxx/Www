@@ -1,6 +1,7 @@
 <?php
 			include("./database.php");
 			connect();
+			comment();
 ?>
 <!DOCTYPE html >
 <html lang="pl">
@@ -56,6 +57,10 @@
 					draw(AllM, L).
 			</code></pre>
 		</figure>
+
+		<?php
+			include("./add_comment.php");
+		?>
 
     </body>
 </html>
