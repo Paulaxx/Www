@@ -196,6 +196,7 @@ function sign_in(){
                     $_SESSION["loggedin"] = true;
                     $_SESSION['username'] = $username;
                     $_SESSION['id'] = $id2;
+                    $_SESSION['want_delete'] = false;
                     $_SESSION['date'] = date("Y-m-d");
                     $_SESSION['hour'] = date('H:i');
                     $_SESSION['LAST_ACTIVITY'] = time();
@@ -222,7 +223,9 @@ function comment(){
     die("Connection failed: " . mysqli_connect_error());
     }
 
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SERVER['REQUEST_METHOD']=='POST' && isset($_POST["my_content"]))
 	{

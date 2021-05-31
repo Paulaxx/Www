@@ -245,12 +245,30 @@ figcaption{
   color: #7575a3;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary3 {
   border-radius: 4px;
   font-family: 'Montserrat', sans-serif;
   font-family: 'Open Sans', sans-serif;
   text-align: justify;
   font-size: 16px;
+}
+
+.fm {
+  overflow: hidden;
+}
+
+.fminside {
+  float:left;
+  padding: 5px;
+}
+
+.fminside2, .fminside3 {
+  padding: 5px;
+}
+
+.btn-primary3 {
+  background-color: #a587a5 !important;
+  border-color: #a587a5 !important;
 }
 
 @media screen and (min-width: 1000px){
