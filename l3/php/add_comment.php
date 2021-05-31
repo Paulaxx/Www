@@ -4,7 +4,7 @@
 			<textarea name="my_content" cols="40" rows="5"></textarea>
 		</div>
 		<div class="form-group">
-			<input type="submit" class="btn btn-primary" value="Dodaj komentarz">
+			<input type="submit" class="btn-primary4" value="Dodaj komentarz">
 		</div>
 	</form>
 </div>

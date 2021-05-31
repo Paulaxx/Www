@@ -6,7 +6,7 @@
     background-color: #fff5f5
   }
 
-  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-primary4 {
     background-color: #a659a6 !important;
     border-color: #a659a6 !important;
   }
@@ -245,12 +245,16 @@ figcaption{
   color: #7575a3;
 }
 
-.btn-primary, .btn-primary3 {
+.btn-primary, .btn-primary3, .btn-primary4 {
   border-radius: 4px;
   font-family: 'Montserrat', sans-serif;
   font-family: 'Open Sans', sans-serif;
   text-align: justify;
   font-size: 16px;
+}
+
+.btn-primary4 {
+  margin: 5px;
 }
 
 .fm {

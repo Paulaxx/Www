@@ -62,6 +62,9 @@
 		<?php
 			include("./add_comment.php");
 		?>
+		<?php
+			include("./show_comments.php");
+		?>
 
     </body>
 </html>
