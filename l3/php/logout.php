@@ -9,9 +9,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("location: index.php");
     }
     else if(isset($_POST["delete_account"])){
-        $_SESSION['want_delete'] = true;
-        header("location: index.php");
-        //dodac przekierowanie na strone na ktorej sie aktualnie jest
+        if($_SESSION['want_delete'] == true)
+            $_SESSION['want_delete'] = false;
+        else
+            $_SESSION['want_delete'] = true;
+        $redirect_to = "location: ".$_POST["delete_account"];
+        header($redirect_to);
     }
     else if(isset($_POST["yes_delete"])){
         $db_host = "localhost";

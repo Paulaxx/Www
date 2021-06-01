@@ -15,6 +15,8 @@
 		session_start();
 	}
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+		$website = explode("/", $_SERVER['REQUEST_URI']);
+    	$project_name = $website[count($website)-1];
 		$hidden = 
 		'<div class="log_data">
 			<p class="fminside2">Zalogowano jako: '.$_SESSION["username"].'</p>
@@ -25,7 +27,7 @@
 				</form>';
 		$hidden = $hidden.
 				'<form class="fminside2" action="logout.php" method="post">
-					<input type="hidden" value="delete" name="delete_account" />
+					<input type="hidden" value="'.$project_name.'" name="delete_account" />
 					<input class="btn-primary" id="submitbutton" type="submit" value="Usuń konto" />
 				</form>';
 		if(isset($_SESSION['want_delete']) && $_SESSION['want_delete'] == true){
