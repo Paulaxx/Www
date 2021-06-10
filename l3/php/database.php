@@ -42,8 +42,13 @@ function new_visitor(mysqli $conn){
 }
 
 function add_visitor($conn, $ip){
-    $sql = "INSERT INTO visitors VALUES ('$ip', 1, curdate())";
-    $conn->query($sql);
+
+    $sql = $conn->prepare("INSERT INTO visitors(id, counter, last_visit) VALUES (?, ?, ?)");
+    $date = date('Y-m-d H:i:s');
+    $one = 1;
+    $sql->bind_param("sss", $ip, $one, $date);
+    $sql->execute();
+    $sql->close();
 }
 
 function increment_counter($conn, $ip){
@@ -141,8 +146,12 @@ function sign_up(){
 
         if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
             $param_password = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (username, password) VALUES ('$username', '$param_password')";
-            $result = $conn->query($sql);
+            $userInsert = $username;
+            $passInsert = $param_password;
+
+            $sql = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+            $sql->bind_param("ss", $userInsert, $passInsert);
+            $result = $sql->execute();
             if($result == TRUE){
                 header("location: sign_in.php");
             }
@@ -234,8 +243,12 @@ function comment(){
             $text = trim($_POST["my_content"]);
             $website = explode("/", $_SERVER['REQUEST_URI']);
             $project_name = $website[count($website)-1];
-            $sql = "INSERT INTO comments (user_id, text, comm_date, website_name) VALUES ($id, '$text', curdate(), '$project_name')";
-            $conn->query($sql);
+            $sql = $conn->prepare("INSERT INTO comments (user_id, text, comm_date, website_name) VALUES (?, ?, ?, ?)");
+            $date = date('Y-m-d H:i:s');
+            $text_to_insert = htmlspecialchars($text);
+            $sql->bind_param("ssss", $id, $text_to_insert, $date, $project_name);
+            $sql->execute();
+            $sql->close();
         }
 	}
     else if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST["my_content"])){
