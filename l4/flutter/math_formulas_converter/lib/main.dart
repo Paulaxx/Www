@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Converter',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.indigo[100],
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Page to convert latex formula'),
     );
   }
 }
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   minLines: 3,
                   maxLines: 10,
                   controller: formulasController,
-                  decoration: InputDecoration(border: OutlineInputBorder(), hintText: 'Enter latex formula'),
+                  decoration: InputDecoration(border: OutlineInputBorder(borderSide: new BorderSide(color: Colors.indigo)), hintText: 'Enter latex formula'),
                 ),
               )
             ),
@@ -95,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child : TextButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 20),
+                    primary: Colors.indigo[300],
                   ),
                   onPressed: _convert,
                   child: const Text('Convert'),
@@ -107,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: double.infinity,
                 margin: const EdgeInsets.all(15.0),
                 padding: const EdgeInsets.all(3.0),
-                decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                decoration: BoxDecoration(border: Border.all(color: Colors.indigo)),
                 child : Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   child : KaTeX(
@@ -133,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   minLines: 3,
                   maxLines: 10,
                   controller: formulasController,
-                  decoration: InputDecoration(border: OutlineInputBorder(), hintText: 'Enter latex formula'),
+                  decoration: InputDecoration(border: OutlineInputBorder(borderSide: new BorderSide(color: Colors.indigo)), hintText: 'Enter latex formula'),
                 ),
               )
             ),
@@ -144,6 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child : TextButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 20),
+                    primary: Colors.indigo[300],
                   ),
                   onPressed: _convert,
                   child: const Text('Convert'),
@@ -156,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: double.infinity,
                 margin: const EdgeInsets.all(15.0),
                 padding: const EdgeInsets.all(3.0),
-                decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                decoration: BoxDecoration(border: Border.all(color: Colors.indigo)),
                 child : Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   child : KaTeX(
